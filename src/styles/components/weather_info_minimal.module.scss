@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  min-width: 90%;
+  max-width: 800px;
+  padding: 10px 5px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid black;
+  color: black;
+  font-family: "Roboto Light", serif;
+  font-weight: normal;
+
+  .city_name {
+    width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .weather_img {
+    height: 25px;
+    width: 25px;
+  }
+}
+
+.delete_location_show {
+  width: 20px;
+  height: 20px;
+  transition: all 400ms ease-in-out;
+}
+
+.delete_location {
+  width: 0;
+  height: 0;
+  visibility: visible;
+  transition: all 400ms ease-in-out;
+
+}

@@ -1,0 +1,144 @@
+.container {
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding: 8px;
+  max-width: 800px;
+}
+
+.back_btn_container {
+  display: flex;
+  justify-content: center;
+}
+
+
+.weather_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  & input {
+    height: 40px;
+    border-radius: 10px;
+    outline: none;
+    padding-left: 10px;
+  }
+
+  & button {
+    padding: 5px 10px;
+    background: black;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+  }
+}
+
+
+.modal_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  visibility: hidden;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  transform: scale(0);
+  transition: all 500ms ease-in;
+  z-index: 2;
+
+  &_active {
+    visibility: visible;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    transform: scale(1);
+    transition: all 500ms ease-in;
+    z-index: 2;
+
+  }
+}
+
+
+.modal_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  width: 80%;
+  background: white;
+  border-radius: 10px;
+}
+
+
+.slider {
+  transform: scale(0);
+  visibility: hidden;
+  transition: all 400ms ease-in-out;
+
+  &_active {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    transform: scale(1);
+    visibility: visible;
+    background: white;
+    transition: all 400ms ease-in-out;
+
+  }
+}
+
+.small_slider {
+  transform: scale(1);
+  visibility: visible;
+  transition: all 400ms ease-in-out;
+
+
+  &_inactive {
+    transform: scale(0);
+    visibility: hidden;
+    transition: all 400ms ease-in-out;
+  }
+}
+
+.back_to_small {
+  position: absolute;
+  right: 50%;
+  bottom: 10%;
+  transform: translateX(50%);
+}
+
+.btns_container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20px;
+}
+
+.modal_open_btn {
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px 5px;
+}
+
+.remove_btn {
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px 5px;
+}
+
+
+.sliders_container {
+  display: grid;
+  grid-template-columns: 8fr 1fr;
+}

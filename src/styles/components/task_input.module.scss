@@ -1,0 +1,23 @@
+.form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.input {
+  padding: 5px 10px;
+  border-radius: 10px;
+  outline: none;
+
+  &:focus::placeholder {
+    color: transparent
+  }
+}
+
+.button {
+  outline: none;
+  background: black;
+  color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+}

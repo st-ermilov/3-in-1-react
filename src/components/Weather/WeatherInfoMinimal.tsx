@@ -40,7 +40,7 @@ const WeatherInfoMinimal: React.FC<TMinWeatherProps> = ({
                 console.error(error)
             }
         }
-        // getWeather()
+        getWeather()
     }, [])
     const weatherIconSwitch = (weatherDescription: string) => {
         const currentTime = new Date().getTime() / 1000;

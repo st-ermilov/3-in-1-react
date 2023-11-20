@@ -24,7 +24,7 @@ const WeatherInfo: React.FC<TProps> = ({id, cityName, data}) => {
                 console.error(error)
             }
         }
-        // getWeather()
+        getWeather()
     }, [])
     const weatherIconSwitch = (weatherDescription: string) => {
         const currentTime = new Date().getTime() / 1000;

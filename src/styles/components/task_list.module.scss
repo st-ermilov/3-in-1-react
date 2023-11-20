@@ -10,7 +10,7 @@
 }
 
 .task {
-  width: 90%;
+  width: 77%;
   min-height: auto;
   display: grid;
   grid-template-columns: 3fr 1fr;
@@ -33,7 +33,7 @@
   }
 
   &_text {
-    max-width: 200px;
+    min-width: 130px;
     word-wrap: break-word;
 
     &_done {

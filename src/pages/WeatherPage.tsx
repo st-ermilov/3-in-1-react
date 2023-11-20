@@ -34,19 +34,7 @@ const WeatherPage = () => {
         setOpen(!open)
     }
 
-    React.useEffect(() => {
-        const handleOutsideClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-            if (open && !e.target.closest('.modal-content')) {
-                closeModal();
-            }
-        };
 
-        document.addEventListener('click', handleOutsideClick);
-
-        return () => {
-            document.removeEventListener('click', handleOutsideClick);
-        };
-    }, [isModalOpen]);
     return (
         <>
             <div className={open ? styles.modal_container_active : styles.modal_container}>

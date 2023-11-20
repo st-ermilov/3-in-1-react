@@ -5,6 +5,7 @@ import ExchangePanel from "../components/Exchange/ExchangePanel";
 import {useAppDispatch, useAppSelector} from "../hooks/rtk-hooks";
 import axios from "axios";
 import {
+    setDataExchange,
     setFirstInputCurrency,
     setFirstSelectedCurrency,
     setSecondInputCurrency,
@@ -12,65 +13,63 @@ import {
 } from "../redux/slices/exchangeSlice";
 
 
-type typeRatesRefCurrent = {
-    current: {
-        [key: string]: number,
-    }
+export type typeRatesRefCurrent = {
+    [key: string]: number,
 }
 
 const ExchangePage = () => {
     const dispatch = useAppDispatch()
-    const ratesRef: React.MutableRefObject<typeRatesRefCurrent> = React.useRef({
-        current: {
-            AUD: 0,
-            BGN: 0,
-            BRL: 0,
-            CAD: 0,
-            CHF: 0,
-            CNY: 0,
-            CZK: 0,
-            DKK: 0,
-            EUR: 0,
-            GBP: 0,
-            HKD: 0,
-            HRK: 0,
-            HUF: 0,
-            IDR: 0,
-            ILS: 0,
-            INR: 0,
-            ISK: 0,
-            JPY: 0,
-            KRW: 0,
-            MXN: 0,
-            MYR: 0,
-            NOK: 0,
-            NZD: 0,
-            PHP: 0,
-            PLN: 0,
-            RON: 0,
-            RUB: 0,
-            SEK: 0,
-            SGD: 0,
-            THB: 0,
-            TRY: 0,
-            USD: 0,
-            ZAR: 0,
-        }
-    })
+    // const ratesRef: React.MutableRefObject<typeRatesRefCurrent> = React.useRef({
+    //     // current: {
+    //     //     AUD: 0,
+    //     //     BGN: 0,
+    //     //     BRL: 0,
+    //     //     CAD: 0,
+    //     //     CHF: 0,
+    //     //     CNY: 0,
+    //     //     CZK: 0,
+    //     //     DKK: 0,
+    //     //     EUR: 0,
+    //     //     GBP: 0,
+    //     //     HKD: 0,
+    //     //     HRK: 0,
+    //     //     HUF: 0,
+    //     //     IDR: 0,
+    //     //     ILS: 0,
+    //     //     INR: 0,
+    //     //     ISK: 0,
+    //     //     JPY: 0,
+    //     //     KRW: 0,
+    //     //     MXN: 0,
+    //     //     MYR: 0,
+    //     //     NOK: 0,
+    //     //     NZD: 0,
+    //     //     PHP: 0,
+    //     //     PLN: 0,
+    //     //     RON: 0,
+    //     //     RUB: 0,
+    //     //     SEK: 0,
+    //     //     SGD: 0,
+    //     //     THB: 0,
+    //     //     TRY: 0,
+    //     //     USD: 0,
+    //     //     ZAR: 0,
+    //     // }
+    // })
 
     const {
         firstSelectedCurrency,
         secondSelectedCurrency,
         firstInputCurrency,
-        secondInputCurrency
+        secondInputCurrency,
+        dataExchange
     } = useAppSelector(state => state.exchange)
 
 
     React.useEffect(() => {
         const getCurrency = async () => {
             const {data} = await axios.get('https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_eAEw9g5Gwog9IhV6ea7EOKWz0zO4Clq5hYgEfL2t')
-            ratesRef.current = data.data
-            onChangeFirstInput(1)
+            dispatch(setDataExchange(data.data))
         }
         getCurrency()
     }, [])
@@ -82,8 +81,8 @@ const ExchangePage = () => {
         } else {
             dispatch(setFirstInputCurrency(0))
         }
-        const price = value / ratesRef.current[firstSelectedCurrency]
-        const result = price * ratesRef.current[secondSelectedCurrency]
+        const price = value / dataExchange[firstSelectedCurrency]
+        const result = price * dataExchange[secondSelectedCurrency]
         dispatch(setSecondInputCurrency(+result.toFixed(2)))
     }
     const onChangeSecondInput = (value: number) => {
@@ -92,8 +91,8 @@ const ExchangePage = () => {
         } else {
             dispatch(setSecondInputCurrency(0))
         }
-        const price = value / ratesRef.current[secondSelectedCurrency]
-        const result = price * ratesRef.current[firstSelectedCurrency]
+        const price = value / dataExchange[secondSelectedCurrency]
+        const result = price * dataExchange[firstSelectedCurrency]
         dispatch(setFirstInputCurrency(+result.toFixed(2)))
     }
 
